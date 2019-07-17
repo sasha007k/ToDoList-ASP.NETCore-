@@ -20,7 +20,7 @@ namespace ToDoList.Controllers
         }
 
         // GET: /<controller>/
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> Index()
         {
             var items = await _toDoItemService.GetIncompleteItemsAsync();
 
