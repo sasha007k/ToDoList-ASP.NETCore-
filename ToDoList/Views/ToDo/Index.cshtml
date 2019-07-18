@@ -1,14 +1,15 @@
 ﻿@model ToDoList.Models.ToDoViewModel
+@using Humanizer
 
 @{
-    ViewData["Title"] = "Manage your todo list";
+    ViewData["Title"] = "My to do list";
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>ToDo List</title>
+    <title>To Do List</title>
 </head>
 <body>
     <div class="panel panel-default todo-panel">
@@ -30,7 +31,7 @@
                         <input type="checkbox" class="done-checkbox">
                     </td>
                     <td>@item.Title</td>
-                    <td>@item.DueAt</td>
+                    <td>@item.DueAt.Humanize()</td>
                 </tr>
             }
         </table>
