@@ -37,7 +37,7 @@
         </table>
 
         <div class="panel-footer add-item-form">
-            <!-- TODO: Add item form -->
+            @await Html.PartialAsync("AddItemPartial", new ToDoList.Models.ToDoItem())
         </div>
     </div>
 </body>

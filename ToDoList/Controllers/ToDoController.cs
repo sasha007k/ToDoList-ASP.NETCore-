@@ -19,7 +19,6 @@ namespace ToDoList.Controllers
             _toDoItemService = toDoItemService;
         }
 
-        // GET: /<controller>/
         public async Task<IActionResult> Index()
         {
             var items = await _toDoItemService.GetIncompleteItemsAsync();
@@ -30,6 +29,23 @@ namespace ToDoList.Controllers
             };
 
             return View(model);
-        }   
+        }
+
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddItem(ToDoItem newItem)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var successful = await _toDoItemService.AddItemAsync(newItem);
+            if (!successful)
+            {
+                return BadRequest("Could not add item.");
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
