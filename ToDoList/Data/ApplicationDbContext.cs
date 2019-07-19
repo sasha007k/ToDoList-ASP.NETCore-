@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ToDoList.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Data.Sqlite;
 
 namespace ToDoList.Data
 {

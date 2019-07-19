@@ -15,7 +15,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Sqlite;
 
-
 namespace ToDoList
 {
     public class Startup
@@ -26,15 +25,12 @@ namespace ToDoList
         }
 
         public IConfiguration Configuration { get; }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {            
             services.AddMvc();
             services.AddScoped<IToDoItemService, ToDoItemService>();
             services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDbContext>();
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlite(
-            //            Configuration.GetConnectionString("DefaultConnection")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

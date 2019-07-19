@@ -9,7 +9,7 @@ using ToDoList.Data;
 namespace ToDoList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190718204533_AddItems")]
+    [Migration("20190719124256_AddItems")]
     partial class AddItems
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
