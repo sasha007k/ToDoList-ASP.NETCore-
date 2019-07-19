@@ -4,16 +4,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ToDoList.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ToDoList.Data
 {
+    //public class ApplicationDbContext : IdentityDbContext<ToDoItem>
+    //{
+    //    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    //        : base(options)
+    //    {
+    //    }
+
+    //    public DbSet<ToDoItem> Items { get; set; }
+
+    //    protected override void OnModelCreating(ModelBuilder builder)
+    //    {
+    //        base.OnModelCreating(builder);
+    //    }
+    //}
+
     public class ApplicationDbContext : DbContext
     {
         public DbSet<ToDoItem> Items { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=260600");
+            optionsBuilder.UseSqlite("Data Source=todolist.db");
         }
     }
 }

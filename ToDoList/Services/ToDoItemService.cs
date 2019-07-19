@@ -7,7 +7,7 @@ using ToDoList.Models;
 using ToDoList.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace AspNetCoreTodo.Services
+namespace ToDoList.Services
 {
     public class ToDoItemService : IToDoItemService
     {

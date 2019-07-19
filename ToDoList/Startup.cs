@@ -12,7 +12,9 @@ using ToDoList.Controllers;
 using ToDoList.Models;
 using ToDoList.Data;
 using Microsoft.EntityFrameworkCore;
-using AspNetCoreTodo.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Sqlite;
+
 
 namespace ToDoList
 {
@@ -29,10 +31,10 @@ namespace ToDoList
         {            
             services.AddMvc();
             services.AddScoped<IToDoItemService, ToDoItemService>();
-            //services.AddSingleton<IToDoItemService, ToDoItemService>();
-            services.AddEntityFrameworkNpgsql()
-               .AddDbContext<ApplicationDbContext>()
-               .BuildServiceProvider();            
+            services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDbContext>();
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlite(
+            //            Configuration.GetConnectionString("DefaultConnection")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -50,11 +52,6 @@ namespace ToDoList
                     name: "default",
                     template: "{controller=ToDo}/{action=Index}/{id?}");
             });
-
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
         }
     }
 }
