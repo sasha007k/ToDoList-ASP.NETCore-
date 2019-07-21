@@ -1,4 +1,5 @@
 ﻿@model ToDoList.Models.ToDoItem
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <form asp-action="AddItem" method="POST">
     <label asp-for="Title">Add a new item:</label>

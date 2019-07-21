@@ -30,7 +30,7 @@ namespace ToDoList
         {            
             services.AddMvc();
             services.AddScoped<IToDoItemService, ToDoItemService>();
-            services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDbContext>();
+            services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDbContext>();           
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

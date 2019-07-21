@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ToDoList.Models
 {
-    public class ToDoItem : IdentityUser
+    public class ToDoItem
     {
         public Guid Id { get; set; }
 
