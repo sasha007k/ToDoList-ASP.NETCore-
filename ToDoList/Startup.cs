@@ -14,6 +14,7 @@ using ToDoList.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace ToDoList
 {
@@ -40,7 +41,7 @@ namespace ToDoList
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseStaticFiles();
+            app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {

@@ -1,8 +1,13 @@
 ﻿@model ToDoList.Models.ToDoViewModel
 @using Humanizer
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 
 @{
     ViewData["Title"] = "My to do list";
+}
+@{
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -28,7 +33,10 @@
             {
                 <tr>
                     <td>
-                        <input type="checkbox" class="done-checkbox">
+                        <form asp-action="MarkDone" method="POST">
+                            <input type="checkbox" class="done-checkbox">
+                            <input type="hidden" name="id" value="@item.Id">
+                        </form>
                     </td>
                     <td>@item.Title</td>
                     <td>@item.DueAt.Humanize()</td>
