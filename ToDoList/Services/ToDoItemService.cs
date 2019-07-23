@@ -6,6 +6,7 @@ using ToDoList.Data;
 using ToDoList.Models;
 using ToDoList.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ToDoList.Services
 {
@@ -21,7 +22,6 @@ namespace ToDoList.Services
         public async Task<List<ToDoItem>> GetIncompleteItemsAsync()
         {
             var items = await _context.Items
-                .Where(x => x.IsDone == false)
                 .ToListAsync();
             return items;
         }
@@ -37,7 +37,20 @@ namespace ToDoList.Services
             return saveResult == 1;
         }
 
-        public async Task<bool> MarkDoneAsync(Guid id)
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var item = await _context.Items
+                .Where(x => x.Id == id)
+                .AsNoTracking()
+                .SingleOrDefaultAsync();
+
+            _context.Items.Remove(item);
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
+
+        public async Task<bool> DoneAsync(Guid id)
         {
             var item = await _context.Items
                 .Where(x => x.Id == id)

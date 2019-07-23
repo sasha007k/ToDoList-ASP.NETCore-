@@ -46,16 +46,33 @@ namespace ToDoList.Controllers
 
             return RedirectToAction("Index");
         }
-
+               
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> MarkDone(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == Guid.Empty)
             {
                 return RedirectToAction("Index");
             }
 
-            var successful = await _toDoItemService.MarkDoneAsync(id);
+            var successful = await _toDoItemService.DeleteAsync(id);
+            if (!successful)
+            {
+                return BadRequest("Could not delete this item.");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Done(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var successful = await _toDoItemService.DeleteAsync(id);
             if (!successful)
             {
                 return BadRequest("Could not mark item as done.");
