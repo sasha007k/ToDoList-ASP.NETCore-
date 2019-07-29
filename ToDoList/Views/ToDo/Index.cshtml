@@ -32,22 +32,36 @@
 
             @foreach (var item in Model.Items)
             {
-                <tr>
-                    <td>
-                        <form asp-action="Done" method="POST">
-                            <input type="checkbox" class="done-checkbox">
-                            <input type="hidden" name="id" value="@item.Id">
-                        </form>                          
-                    </td>
-                    <td>
-                        <form asp-action="Delete" method="POST">
-                            <input type="hidden" name="id" value="@item.Id">
-                            <button>X</button>
-                        </form>
-                    </td>
+            <tr>
+                <td>
+                    <form asp-action="Done" method="POST">
+                        <input type="checkbox" class="done-checkbox">
+                        <input type="hidden" name="id" value="@item.Id">
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="Delete" method="POST">
+                        <input type="hidden" name="id" value="@item.Id">
+                        <button>X</button>
+                    </form>
+                </td>
+                @if (@item.IsDone)
+                {
+                    <td><s>@item.Title</s></td>
+                }
+                else
+                {
                     <td>@item.Title</td>
+                }
+                @if (@item.IsDone)
+                {
+                    <td><s>@item.DueAt.Humanize()</s></td>
+                }
+                else
+                {
                     <td>@item.DueAt.Humanize()</td>
-                </tr>
+                }
+            </tr>
             }
         </table>
 
