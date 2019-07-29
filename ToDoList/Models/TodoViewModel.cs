@@ -7,6 +7,6 @@ namespace ToDoList.Models
 {
     public class ToDoViewModel
     {
-        public List<ToDoItem> items;
+        public List<ToDoItem> Items;
     }
 }

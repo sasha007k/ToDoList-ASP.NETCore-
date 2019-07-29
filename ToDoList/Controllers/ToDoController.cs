@@ -24,7 +24,7 @@ namespace ToDoList.Controllers
 
             var model = new ToDoViewModel()
             {
-                items = items
+                Items = items
             };
 
             return View(model);

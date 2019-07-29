@@ -30,12 +30,13 @@
                 </tr>
             </thead>
 
-            @foreach (var item in Model.items)
+            @foreach (var item in Model.Items)
             {
                 <tr>
                     <td>
-                        <form asp-action="MarkDone" method="POST">
-                            <input type="checkbox" name="id" id="checkbox-id" value="@item.Id" onchange="markDone(this)">
+                        <form asp-action="Done" method="POST">
+                            <input type="checkbox" class="done-checkbox">
+                            <input type="hidden" name="id" value="@item.Id">
                         </form>
                     </td>
                     <td>

@@ -9,21 +9,6 @@ using Microsoft.Data.Sqlite;
 
 namespace ToDoList.Data
 {
-    //public class ApplicationDbContext : IdentityDbContext<ToDoItem>
-    //{
-    //    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-    //        : base(options)
-    //    {
-    //    }
-
-    //    public DbSet<ToDoItem> Items { get; set; }
-
-    //    protected override void OnModelCreating(ModelBuilder builder)
-    //    {
-    //        base.OnModelCreating(builder);
-    //    }
-    //}
-
     public class ApplicationDbContext : DbContext
     {
         public DbSet<ToDoItem> Items { get; set; }

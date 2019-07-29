@@ -14,7 +14,5 @@ namespace ToDoList.Services
         Task<bool> AddItemAsync(ToDoItem newItem);
 
         Task<bool> DeleteAsync(Guid id);
-
-        Task<bool> DoneAsync(Guid id);
     }
 }
