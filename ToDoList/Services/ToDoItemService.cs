@@ -19,7 +19,7 @@ namespace ToDoList.Services
             _context = context;
         }
 
-        public async Task<List<ToDoItem>> GetIncompleteItemsAsync()
+        public async Task<List<ToDoItem>> GetAllItemsAsync()
         {
             var items = await _context.Items
                 .ToListAsync();
@@ -48,6 +48,26 @@ namespace ToDoList.Services
             _context.Items.Remove(item);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
-        }        
+        }
+
+        public async Task<bool> DoneAsync(Guid id)
+        {
+            var item = await _context.Items
+                .Where(x => x.Id == id)
+                .AsNoTracking()
+                .SingleOrDefaultAsync();
+
+            var newItem = item;
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+
+            newItem.Id = Guid.NewGuid();
+            newItem.IsDone = true;
+            
+            _context.Items.Add(newItem);
+
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
     }
 }

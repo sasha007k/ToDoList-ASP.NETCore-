@@ -20,7 +20,7 @@ namespace ToDoList.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var items = await _toDoItemService.GetIncompleteItemsAsync();
+            var items = await _toDoItemService.GetAllItemsAsync();
 
             var model = new ToDoViewModel()
             {
@@ -72,7 +72,7 @@ namespace ToDoList.Controllers
                 return RedirectToAction("Index");
             }
 
-            var successful = await _toDoItemService.DeleteAsync(id);
+            var successful = await _toDoItemService.DoneAsync(id);
             if (!successful)
             {
                 return BadRequest("Could not mark item as done.");

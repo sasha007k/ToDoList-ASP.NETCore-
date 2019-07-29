@@ -9,10 +9,12 @@ namespace ToDoList.Services
 {
     public interface IToDoItemService
     {
-        Task<List<ToDoItem>> GetIncompleteItemsAsync();
+        Task<List<ToDoItem>> GetAllItemsAsync();
 
         Task<bool> AddItemAsync(ToDoItem newItem);
 
         Task<bool> DeleteAsync(Guid id);
+
+        Task<bool> DoneAsync(Guid id);
     }
 }

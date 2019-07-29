@@ -14,4 +14,3 @@ function markDone(checkbox) {
     var form = checkbox.closest('form');
     form.submit();
 }
-
