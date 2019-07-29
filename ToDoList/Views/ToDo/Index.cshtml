@@ -35,8 +35,16 @@
             <tr>
                 <td>
                     <form asp-action="Done" method="POST">
-                        <input type="checkbox" class="done-checkbox">
-                        <input type="hidden" name="id" value="@item.Id">
+                        @if (item.IsDone)
+                        {
+                            <input type="checkbox" class="done-checkbox" checked>
+                            <input type="hidden" name="id" value="@item.Id">
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="done-checkbox">
+                            <input type="hidden" name="id" value="@item.Id">
+                        }
                     </form>
                 </td>
                 <td>
