@@ -34,7 +34,7 @@
             {
             <tr>
                 <td>
-                    <form asp-action="Done" method="POST">
+                    <form asp-action="ChangeDoneState" method="POST">
                         @if (item.IsDone)
                         {
                             <input type="checkbox" class="done-checkbox" checked>
@@ -56,17 +56,11 @@
                 @if (@item.IsDone)
                 {
                     <td><s>@item.Title</s></td>
-                }
-                else
-                {
-                    <td>@item.Title</td>
-                }
-                @if (@item.IsDone)
-                {
                     <td><s>@item.DueAt.Humanize()</s></td>
                 }
                 else
                 {
+                    <td>@item.Title</td>
                     <td>@item.DueAt.Humanize()</td>
                 }
             </tr>

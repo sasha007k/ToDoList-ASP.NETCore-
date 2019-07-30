@@ -4,9 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ToDoList.Data;
 using ToDoList.Models;
-using ToDoList.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ToDoList.Services
 {
@@ -50,22 +48,16 @@ namespace ToDoList.Services
             return saveResult == 1;
         }
 
-        public async Task<bool> DoneAsync(Guid id)
+        public async Task<bool> ChangeDoneStateAsync(Guid id)
         {
             var item = await _context.Items
                 .Where(x => x.Id == id)
                 .AsNoTracking()
                 .SingleOrDefaultAsync();
 
-            var newItem = item;
-            _context.Items.Remove(item);
-            await _context.SaveChangesAsync();
+            item.IsDone = !item.IsDone;
 
-            newItem.Id = Guid.NewGuid();
-            newItem.IsDone = true;
-            
-            _context.Items.Add(newItem);
-
+            _context.Items.Update(item);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }

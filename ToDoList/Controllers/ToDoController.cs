@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Services;
@@ -65,14 +63,14 @@ namespace ToDoList.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Done(Guid id)
+        public async Task<IActionResult> ChangeDoneState(Guid id)
         {
             if (id == Guid.Empty)
             {
                 return RedirectToAction("Index");
             }
 
-            var successful = await _toDoItemService.DoneAsync(id);
+            var successful = await _toDoItemService.ChangeDoneStateAsync(id);
             if (!successful)
             {
                 return BadRequest("Could not mark item as done.");
